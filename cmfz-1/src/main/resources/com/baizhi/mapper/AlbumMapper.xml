@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.AlbumDao">
+    <!--查询所有-->
+<select id="selectAll" resultType="Album">
+    select * from t_album  limit #{begin} , #{rows}
+</select>
+    <!--查询总条数-->
+    <select id="selectCount" resultType="Integer">
+        select count(*) from t_album
+    </select>
+    <!--添加-->
+    <insert id="insertAlbum">
+    insert into t_album value(#{id},#{name},#{author},#{announcer},#{intro},#{coverUrl},#{publish},#{score},#{count})
+</insert>
+    <!--删除-->
+    <delete id="deleteAlbum">
+    delete from t_album where id=#{id}
+</delete>
+    <!--修改-->
+    <update id="updateAlbum">
+    update t_album set name=#{name},author=#{author},announcer=#{announcer},intro=#{intro},coverUrl=#{coverUrl},
+    publish=#{publish} , score=#{score} ,count=#{count} where id=#{id}
+</update>
+<!--修改封面路径-->
+<update id="updateCover">
+    update t_album set coverUrl=#{coverUrl} where id=#{id}
+</update>
+</mapper>

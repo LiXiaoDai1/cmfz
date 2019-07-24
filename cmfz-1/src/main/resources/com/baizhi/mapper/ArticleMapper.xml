@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.ArticleDao">
+<!--查询所有-->
+<select id="selectAll" resultType="Article">
+    select  id,title,publishTime,g_id as gId,content_url as contentUrl from t_article  limit #{begin} , #{rows}
+</select>
+<!--查询总条数-->
+    <select id="selectCount" resultType="Integer">
+        select count(*) from t_article
+    </select>
+<!--删除-->
+<delete id="deleteArticle">
+    delete from t_article where id=#{id}
+</delete>
+<!--添加-->
+<insert id="insertArticle">
+    insert into t_article values(#{id},#{title},#{gId},#{publishTime},#{contentUrl})
+</insert>
+<!--修改-->
+<update id="updateArticle">
+    update t_article set title=#{title},g_id=#{gId},publishTime=#{publishTime} ,content_url=#{contentUrl} where id=#{id}
+</update>
+<!--修改路径-->
+    <update id="updatePath">
+         update t_article set content_url=#{contentUrl} where id=#{id}
+    </update>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.BannerDao">
+ <!--查询所有-->
+<select id="selectAll" resultType="Banner">
+    select id,headline,path,state,createTime from banner limit #{begin} , #{rows}
+</select>
+    <!--查询总条数-->
+<select id="selectCount" resultType="Integer">
+select count(*) from banner
+</select>
+<!--删除-->
+<delete id="deleteBannerById">
+delete from banner where id=#{id}
+</delete>
+<!--添加-->
+<insert id="insertBanner">
+    insert into banner values(#{id},#{headline},#{path},#{state},#{createTime})
+</insert>
+    <!--修改路径-->
+    <update id="updateBannerPath">
+        update banner set path=#{path} where id=#{id}
+    </update>
+    <!--修改banner-->
+    <update id="updateBanner">
+        update banner set path=#{path},headline=#{headline},state=#{state},createTime=#{createTime} where id=#{id}
+    </update>
+</mapper>
